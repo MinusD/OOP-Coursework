@@ -139,7 +139,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="A05.ООП.Курсовая работа.Вар.11.cpp" />
+    <ClCompile Include="ConcreteStates.cpp" />
+    <ClCompile Include="Interpreter.cpp" />
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ConcreteStates.h" />
+    <ClInclude Include="D.h" />
+    <ClInclude Include="H.h" />
+    <ClInclude Include="Interpreter.h" />
+    <ClInclude Include="S.h" />
+    <ClInclude Include="State.h" />
+    <ClInclude Include="StateException.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
