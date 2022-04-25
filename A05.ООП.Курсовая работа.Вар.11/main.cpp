@@ -9,9 +9,9 @@ using namespace std;
 
 enum state { _H, _D, _S };
 state recognize(const char*);
-
+/*
 int main() {
-    const char* input = "http://asv/";
+    const char* input = "http://asd/";
     try {
         state cur = recognize(input);
         if (cur != _S) {
@@ -28,11 +28,11 @@ int main() {
     }
     return 0;
 }
+*/
 
-/*
 int main()
 {
-    string input = "https://";
+    string input = "http://s/";
     Interpreter interpreter;
     try {
         input += "/";
@@ -41,8 +41,7 @@ int main()
         }
         if (interpreter.getState().isFinal()) {
             cout << "OK" << endl;
-        }
-        else {
+        } else {
             throw runtime_error("Interpreter not in final state");
         }
     } catch (exception& e) {
@@ -51,7 +50,7 @@ int main()
     }
     return 0;
 }
-*/
+
 state recognize(const char* s)
 {
     state cur = _H;
@@ -66,11 +65,9 @@ state recognize(const char* s)
             //std::cout << c << " " << pattern[i] << std::endl;
             if (i == 6) {
                 cur = _D;
-            }
-            else if (c != pattern[i]) {
+            } else if (c != pattern[i]) {
                 throw c;
-            }
-            else {
+            } else {
                 cur = _H;
             }
             break;
@@ -78,15 +75,12 @@ state recognize(const char* s)
             //std::cout << c << " " << strlen(s)-1 << " " << c << " " << s[i] << " " << i << std::endl;
             if (i == strlen(s) - 1 && flag && (c == '/' or c >= 'a' && c <= 'z')) {
                 cur = _S;
-            }
-            else if (c >= 'a' && c <= 'z') {
+            } else if (c >= 'a' && c <= 'z') {
                 flag = true;
                 cur = _D;
-            }
-            else if (c == '/') {
+            } else if (c == '/' && flag) {
                 cur = _S;
-            }
-            else {
+            } else {
                 throw c;
             }
             break;

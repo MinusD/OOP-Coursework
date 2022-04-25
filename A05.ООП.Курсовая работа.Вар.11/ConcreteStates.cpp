@@ -10,7 +10,7 @@ void H::proceed(std::string::const_iterator& it, Interpreter* interp)
     std::string pattern = "http://";
     for (int i = 0; i < 7; i++) {
         if (*it == pattern[i]) {
-            std::cout << *it;
+            //std::cout << *it;
             if (i != 6) it++;
             continue;
         }
@@ -18,6 +18,7 @@ void H::proceed(std::string::const_iterator& it, Interpreter* interp)
             throw StateException(std::string("Invalid symbol: ") + *it);
         }
     }
+    interp->setState(D::getInstance());
     /*while (true) {
         if (*it == pattern[pos]) {
             pos++
@@ -30,7 +31,7 @@ void H::proceed(std::string::const_iterator& it, Interpreter* interp)
         throw StateException(std::string("Invalid symbol: ") + *it);
     }
     */
-    interp->setState(D::getInstance());
+    
 }
 
 void D::proceed(std::string::const_iterator& it, Interpreter* interp)
@@ -41,18 +42,14 @@ void D::proceed(std::string::const_iterator& it, Interpreter* interp)
             it++;
             flag = true;
             continue;
-        }
-        else if (*it != '/') {
+        } else if (*it != '/') {
             throw StateException(std::string("Invalid symbol: ") + *it);
         }
-        else if (flag)
-        {
+        else if (flag) {
             return interp->setState(S::getInstance());
-        }
-        else {
+        } else {
             throw StateException(std::string("Invalid format"));
         }
-
     }
 }
 
